@@ -1,0 +1,6 @@
+framework module Pods_SimpleConstraints {
+  umbrella header "Pods-SimpleConstraints-umbrella.h"
+
+  export *
+  module * { export * }
+}
