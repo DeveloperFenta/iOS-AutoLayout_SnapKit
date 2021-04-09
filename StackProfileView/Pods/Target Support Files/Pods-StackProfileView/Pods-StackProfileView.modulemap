@@ -1,0 +1,6 @@
+framework module Pods_StackProfileView {
+  umbrella header "Pods-StackProfileView-umbrella.h"
+
+  export *
+  module * { export * }
+}
