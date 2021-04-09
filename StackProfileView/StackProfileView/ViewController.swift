@@ -30,7 +30,6 @@ class ViewController: UIViewController {
     
     lazy var profileImageView = UIImageView().then {
         $0.image = UIImage(systemName: "swift")
-        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     }
     
     lazy var firstNameLabel = UILabel().then {
@@ -56,8 +55,6 @@ class ViewController: UIViewController {
         $0.alignment = .leading
         $0.distribution = .fillEqually
         $0.spacing = 8
-        $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
-        $0.setContentHuggingPriority(.defaultHigh, for: .vertical)
     }
     
     lazy var firstNameTextField = UITextField().then {
@@ -121,16 +118,19 @@ class ViewController: UIViewController {
             let subView = [firstNameLabel, middleNameLabel, lastNameLabel]
             subView.forEach{
                 $0.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+                $0.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
                 stackView.addArrangedSubview($0)
             }
             
             stackView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+            stackView.setContentCompressionResistancePriority(.defaultHigh, for: .horizontal)
         }
 
         nameTextFieldStackView.do { stackView in
             let subView = [firstNameTextField, middleNameTextField, lastNameTextField]
             subView.forEach {
                 $0.setContentHuggingPriority(.defaultLow, for: .horizontal)
+                $0.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
                 stackView.addArrangedSubview($0)
             }
             
@@ -150,6 +150,7 @@ class ViewController: UIViewController {
         
         middleNameLabel.snp.makeConstraints {
             $0.centerY.equalTo(middleNameTextField.snp.centerY)
+            $0.width.equalTo(nameLabelStackView)
         }
         
         lastNameLabel.snp.makeConstraints {
@@ -157,7 +158,7 @@ class ViewController: UIViewController {
         }
         
         firstNameTextField.snp.makeConstraints {
-            $0.right.equalTo(nameTextFieldStackView.snp.right)
+            $0.width.equalTo(nameTextFieldStackView)
         }
         
         middleNameTextField.snp.makeConstraints {
@@ -174,7 +175,7 @@ class ViewController: UIViewController {
         
         profileImageView.snp.makeConstraints {
             $0.height.equalTo(profileImageView.snp.width)
-            $0.height.greaterThanOrEqualTo(150).priority(1)
+            $0.height.equalTo(150)
         }
         
         profileTextField.snp.makeConstraints {
